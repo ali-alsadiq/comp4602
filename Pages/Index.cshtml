@@ -4,7 +4,30 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="mx-auto">
+    <form method="post" class="mb-5">
+        <label asp-for="Year">Year:</label>
+        <input asp-for="Year" type="number" class="form-control" required>
+        <br>
+        <button type="submit" class="btn btn-primary">Get Zodiac</button>
+        <a href="" class="btn btn-success">Clear</a>
+    </form>
+
+    @if (Model.Year != null)
+    {
+        @if (Model.Year.Value > 1900 && Model.Year.Value <=  DateTime.Now.Year + 1)
+        {
+            string zodiac = IndexModel.GetZodiac(Model.Year.Value);
+            string imageUrl = $"/images/{zodiac.ToLower()}.png";
+           <div class="alert alert-success mx-auto" style="width: 350px;">
+                <p>Your Zodiac is: <b>@zodiac</b></p>
+                <img src=@imageUrl alt="Zodiac Image" class="d-block mx-auto"/>
+           </div>
+        }
+        else
+        {
+            <p class="alert alert-danger mx-auto" style="width: 300px;" role="alert">Year must be between 1900 and next year. Please Try Again.</p>
+        }
+    }
 </div>
+
