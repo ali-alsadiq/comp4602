@@ -15,19 +15,20 @@
 
     @if (Model.Year != null)
     {
-        @if (Model.Year.Value > 1900 && Model.Year.Value <=  DateTime.Now.Year + 1)
+        @if (Model.Year.Value >= 1900 && Model.Year.Value <= DateTime.Now.Year + 1)
         {
             string zodiac = IndexModel.GetZodiac(Model.Year.Value);
             string imageUrl = $"/images/{zodiac.ToLower()}.png";
-           <div class="alert alert-success mx-auto" style="width: 350px;">
+            <div class="alert alert-success mx-auto" style="width: 350px;">
                 <p>Your Zodiac is: <b>@zodiac</b></p>
-                <img src=@imageUrl alt="Zodiac Image" class="d-block mx-auto"/>
-           </div>
+                <img src=@imageUrl alt="Zodiac Image" class="d-block mx-auto" />
+            </div>
         }
         else
         {
-            <p class="alert alert-danger mx-auto" style="width: 300px;" role="alert">Year must be between 1900 and next year. Please Try Again.</p>
+            <p class="alert alert-danger mx-auto" style="width: 300px;" role="alert">
+                Year must be between 1900 and next year. Please Try Again.
+            </p>
         }
     }
 </div>
-
