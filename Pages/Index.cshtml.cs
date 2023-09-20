@@ -5,6 +5,7 @@ namespace lab01.Pages;
 
 public class IndexModel : PageModel
 {
+    [BindProperty]
     public int? Year { get; set; }
     private readonly ILogger<IndexModel> _logger;
 
